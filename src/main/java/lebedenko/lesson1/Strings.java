@@ -1,4 +1,4 @@
-package main.Java.Lebedenko.Lesson1;
+package lebedenko.lesson1;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -7,55 +7,26 @@ public class Strings {
     private String firstText;
     private String secondText;
     private Scanner in = new Scanner (System.in);
-    boolean notExit = true;
+    private boolean notExit = true;
 
-    void isFirstOrSecondText () {
-        if ((this.getFirstText()=="") || (this.getSecondText()=="") || (this.getFirstText() == null) || (this.getSecondText() == null)){
-//            String str1 = in.nextLine ();
-//            this.setFirstText (str1);
-//            String str2 = in.nextLine ();
-//            this.setSecondText (str2);
-            isFirstText();
-            isSecondText ();
-
-        }
+    public Scanner getIn() {
+        return in;
     }
 
-    void isFirstText () {
-        if ((this.getFirstText () == "") || (this.getFirstText () == null)){
-            System.out.println ("Текст должен содержать что-нибудь. Введите:");
-            String str1 = in.nextLine();
-            System.out.println (str1);
-            this.setFirstText (str1);
-        }
+    public boolean isNotExit() {
+        return notExit;
     }
 
-    void isSecondText () {
-        if ((this.getSecondText () == "") || (this.getSecondText () == null)){
-            System.out.println ("Второй фрагмент текста тоже должен содержать что-нибудь. Введите:");
-            String str2 = in.nextLine();
-            System.out.println (str2);
-            this.setSecondText(str2);
-        }
+    public void setNotExit(boolean notExit) {
+        this.notExit = notExit;
     }
 
-    void setFirstText(String text) {
-        this.firstText = text;
+    public void menuOperation() {
+        this.printMenu ();
+        this.menuSelection();
     }
 
-    void setSecondText(String text) {
-        this.secondText = text;
-    }
-
-    String getFirstText() {
-        return this.firstText;
-    }
-
-    String getSecondText() {
-        return this.secondText;
-    }
-
-    void printMenu() {
+    private void printMenu() {
         System.out.println ("---------------------------");
         System.out.println ("1. Ввести первую строку");
         System.out.println ("2. Ввести вторую строку");
@@ -75,140 +46,203 @@ public class Strings {
         System.out.println ("16. Получить подстроку с 44 символа по 90 символ");
         System.out.println ("17. Разбить строку по символу пробел (т.е. чтобы каждое слово было отдельным элементом массива)");
         System.out.println ("18. Поменять последовательность символов в строке на обратную.");
+        System.out.println ("0. Выход");
     }
 
-    public void selectFromMenu() {
-        String first;// = this.getFirstText ();
-        String second;// = this.getSecondText();
-//        boolean isFirst = this.isFirstText();
-//        boolean isSecond = this.isSecondText ();
-//        boolean isFirstAndSecond = this.isFirstOrSecondText ();
-
-
+    private void menuSelection() {
         this.printMenu ();
         System.out.println ("Выберите: ");
-        while (notExit) {
-            String str = in.nextLine ();
-            switch (str) {
-                case "1": {
-                    isFirstText ();
-                    this.printMenu ();
-                }
-                break;
-                case "2": {
-                    isSecondText ();
-                    this.printMenu ();
-                }
-                break;
-                case "3": {
-                    isFirstOrSecondText();
-                    System.out.println ("1-ая строка: ");
-                    System.out.print (this.getFirstText ());
-                    System.out.println ("2-ая строка:");
-                    System.out.print (this.getSecondText ());
-                    this.printMenu ();
-                }
-                break;
-                case "4":{
-                    isFirstOrSecondText();
-                    System.out.println ("Длина первой строки = " + this.getFirstText ().length ());
-                    System.out.println ("Длина второй строки = " + this.getSecondText ().length ());
-                    this.printMenu ();
-                }
-                break;
-                case "5":{
-                    isFirstText();
-                    System.out.println ("Первая строка равна Второй без учета регистра ? " + this.getFirstText ().equalsIgnoreCase (this.getSecondText ()));
-                    this.printMenu ();
-                }
-                break;
-                case "6":{
-                    String ThirdStr = new String ("Sun Oracle Java");
-                    ThirdStr = ThirdStr.intern();
-                    System.out.println (ThirdStr);
-                    this.printMenu ();
-                }
-                break;
-                case "7":{
-                    isFirstText ();
-                    char[] arr1 = this.getFirstText ().toCharArray ();
-                    System.out.println (Arrays.toString (arr1));
-                    this.printMenu ();
-                }
-                break;
-                case "8":{
-                    isFirstText ();
-                    byte[] arr2 = this.getFirstText ().getBytes ();
-                    System.out.println (Arrays.toString (arr2));
-                    this.printMenu ();
-                }
-                break;
-                case "9":{
-                    isFirstText ();
-                    String ThirdStr = this.getFirstText ().toUpperCase ();
-                    System.out.println ("верхний регистр первой строки: "+ThirdStr);
-                    this.printMenu ();
-                }
-                break;
-                case "10":{
-                    isFirstText ();
-                    System.out.println ("Первая позиция символа \"а\" в строке = " + this.getFirstText ().indexOf ('a'));
-                    this.printMenu ();
-                }
-                break;
-                case "11":{
-                    isFirstText ();
-                    System.out.println ("Первая позиция символа \"а\" в строке = " + this.getFirstText ().lastIndexOf ('a'));
-                    this.printMenu ();
-                }
-                break;
-                case "12":{
-                    isFirstText ();
-                    System.out.println ("Содержит первая строка слово\"Sun\"? "+ this.getFirstText ().contains ("Sun"));
-                    this.printMenu ();
-                }
-                break;
-                case "13":{
-                    isFirstText ();
-                    System.out.println ("Оканчивается-ли первая строка на \"Oracle\""+ this.getFirstText ().endsWith  ("Oracle"));
-                    this.printMenu ();
-                }
-                break;
-                case "14":{
-                    isFirstText ();
-                    System.out.println ("Начинается-ли первая строка на \"Java\""+ this.getFirstText ().startsWith  ("Java"));
-                    this.printMenu ();
-                }
-                break;
-                case "15":{
-                    isFirstText ();
-                    System.out.println (this.getFirstText ().replace ('a', 'o'));
-                    this.printMenu ();
-                }
-                break;
-                case "16":{
-                    isFirstText ();
-                    System.out.println (this.getFirstText ().subSequence (43, 89));
-                    this.printMenu ();
-                }
-                break;
-                case "17":{
-                    isFirstText ();
-                    System.out.println (Arrays.toString (this.getFirstText ().split (" ")));
-                    this.printMenu ();
-                }
-                break;
-                case "18":{
-                    isFirstText ();
-                    System.out.println (new StringBuffer (this.getFirstText ()).reverse ());
-                    this.printMenu ();
-                }
-
-                case "0": notExit = false; break;
-                default:
-                    System.out.println ("Неправильно! Еще раз:");
-                    break;
+        while (isNotExit()) {
+            String str = getIn ().nextLine ();
+            if ("1".equals (str)) {
+                isFirstText ();
+                this.printMenu ();
+            } else if ("2".equals (str)) {
+                isSecondText ();
+                this.printMenu ();
+            } else if ("3".equals (str)) {
+                isFirstOrSecondText ();
+                getText ();
+                this.printMenu ();
+            } else if ("4".equals (str)) {
+                isFirstOrSecondText ();
+                length ();
+                this.printMenu ();
+            } else if ("5".equals (str)) {
+                isFirstText ();
+                equalsIgnoreCase ();
+                this.printMenu ();
+            } else if ("6".equals (str)) {
+                intern ();
+                this.printMenu ();
+            } else if ("7".equals (str)) {
+                isFirstText ();
+                toCharArray ();
+                this.printMenu ();
+            } else if ("8".equals (str)) {
+                isFirstText ();
+                getBytes ();
+                this.printMenu ();
+            } else if ("9".equals (str)) {
+                isFirstText ();
+                toUpperCase ();
+                this.printMenu ();
+            } else if ("10".equals (str)) {
+                isFirstText ();
+                indexOf ();
+                this.printMenu ();
+            } else if ("11".equals (str)) {
+                isFirstText ();
+                lastIndexOf ();
+                this.printMenu ();
+            } else if ("12".equals (str)) {
+                isFirstText ();
+                contains ();
+                this.printMenu ();
+            } else if ("13".equals (str)) {
+                isFirstText ();
+                endsWith ();
+                this.printMenu ();
+            } else if ("14".equals (str)) {
+                isFirstText ();
+                startsWith ();
+                this.printMenu ();
+            } else if ("15".equals (str)) {
+                isFirstText ();
+                replace ();
+                this.printMenu ();
+            } else if ("16".equals (str)) {
+                isFirstText ();
+                subSequence ();
+                this.printMenu ();
+            } else if ("17".equals (str)) {
+                isFirstText ();
+                split ();
+                this.printMenu ();
+            } else if ("18".equals (str)) {
+                isFirstText ();
+                reverse ();
+                this.printMenu ();
+            } else if ("0".equals (str)) {
+                setNotExit(false);
+            } else {
+                System.out.println ("Неправильно! Еще раз:");
             }
         }
+    }
+
+    private void reverse() {
+        System.out.println (new StringBuffer (this.getFirstText ()).reverse ());
+    }
+
+    private void split() {
+        System.out.println (Arrays.toString (this.getFirstText ().split (" ")));
+    }
+
+    private void subSequence() {
+        System.out.println (this.getFirstText ().subSequence (43, 89));
+    }
+
+    private void replace() {
+        System.out.println (this.getFirstText ().replace ('a', 'o'));
+    }
+
+    private void startsWith() {
+        System.out.println ("Начинается-ли первая строка на \"Java\"" + this.getFirstText ().startsWith ("Java"));
+    }
+
+    private void endsWith() {
+        System.out.println ("Оканчивается-ли первая строка на \"Oracle\"" + this.getFirstText ().endsWith ("Oracle"));
+    }
+
+    private void contains() {
+        System.out.println ("Содержит первая строка слово\"Sun\"? " + this.getFirstText ().contains ("Sun"));
+    }
+
+    private void lastIndexOf() {
+        System.out.println ("Первая позиция символа \"а\" в строке = " + this.getFirstText ().lastIndexOf ('a'));
+    }
+
+    private void indexOf() {
+        System.out.println ("Первая позиция символа \"а\" в строке = " + this.getFirstText ().indexOf ('a'));
+    }
+
+    private void toUpperCase() {
+        String ThirdStr = this.getFirstText ().toUpperCase ();
+        System.out.println ("верхний регистр первой строки: " + ThirdStr);
+    }
+
+    private void getBytes() {
+        byte[] arr2 = this.getFirstText ().getBytes ();
+        System.out.println (Arrays.toString (arr2));
+    }
+
+    private void toCharArray() {
+        char[] arr1 = this.getFirstText ().toCharArray ();
+        System.out.println (Arrays.toString (arr1));
+    }
+
+    private void intern() {
+        String ThirdStr = new String ("Sun Oracle Java");
+        ThirdStr = ThirdStr.intern ();
+        System.out.println (ThirdStr);
+    }
+
+    private void equalsIgnoreCase() {
+        System.out.println ("Первая строка равна Второй без учета регистра ? " + this.getFirstText ().equalsIgnoreCase (this.getSecondText ()));
+    }
+
+    private void length() {
+        System.out.println ("Длина первой строки = " + this.getFirstText ().length ());
+        System.out.println ("Длина второй строки = " + this.getSecondText ().length ());
+    }
+
+    private void getText() {
+        System.out.println ("1-ая строка: ");
+        System.out.print (this.getFirstText ());
+        System.out.println ("2-ая строка:");
+        System.out.print (this.getSecondText ());
+    }
+
+    private String getFirstText() {
+        return this.firstText;
+    }
+
+    private String getSecondText() {
+        return this.secondText;
+    }
+
+    private void isFirstOrSecondText () {
+        if ((this.getFirstText()=="") || (this.getSecondText()=="") || (this.getFirstText() == null) || (this.getSecondText() == null)){
+            isFirstText();
+            isSecondText ();
+
+        }
+    }
+
+    private void isFirstText () {
+        if ((this.getFirstText () == "") || (this.getFirstText () == null)){
+            System.out.println ("Текст должен содержать что-нибудь. Введите:");
+            String str1 = getIn ().nextLine();
+            System.out.println (str1);
+            this.setFirstText (str1);
+        }
+    }
+
+    void isSecondText () {
+        if ((this.getSecondText () == "") || (this.getSecondText () == null)){
+            System.out.println ("Второй фрагмент текста тоже должен содержать что-нибудь. Введите:");
+            String str2 =getIn ().nextLine();
+            System.out.println (str2);
+            this.setSecondText(str2);
+        }
+    }
+
+    private void setFirstText(String text) {
+        this.firstText = text;
+    }
+
+    private void setSecondText(String text) {
+        this.secondText = text;
     }
 }
